@@ -9,9 +9,10 @@ class View:
         print("1. Добавить новую заметку")
         print("2. Изменить заметку")
         print("3. Выбрать заметки за дату")
-        print("4. Удалить заметку")
-        print("5. Показать все заметки")
-        print("6. Выход")
+        print("4. Показать заметку по Id")
+        print("5. Удалить заметку")
+        print("6. Показать все заметки")
+        print("7. Выход")
         choice = input("Введите цифру для дальнейших действий: ")
         return choice
 
@@ -65,3 +66,8 @@ class View:
     @staticmethod
     def no_data_found():
         print("За эту дату заметок нет!")
+
+    @staticmethod
+    def show_note(note):
+        print(note)
+        print('***********************')

@@ -38,6 +38,7 @@ class Controller:
         search_id = self.view.get_id_from_user()
         for item in self.model.notes:
             if item.note_id == search_id:
+                flag = 1
                 self.model.notes.remove(item)
                 self.model.write()
                 self.view.ok()
@@ -48,7 +49,6 @@ class Controller:
         self.model.load_notes()
         date = self.view.date_from_user()
         date_list = [note for note in self.model.notes if note.timestamp.strftime("%Y-%m-%dT%H:%M:%S.%f").startswith(date)]
-
         if date_list:
             self.view.show_notes(date_list)
         else:
@@ -57,3 +57,14 @@ class Controller:
     def show_all(self):
         self.model.load_notes()
         self.view.show_notes(self.model.notes)
+
+    def show_by_id(self):
+        self.model.load_notes()
+        flag = 0
+        search_id = self.view.get_id_from_user()
+        for item in self.model.notes:
+            if item.note_id == search_id:
+                flag = 1
+                self.view.show_note(item)
+        if flag == 0:
+            self.view.not_found()

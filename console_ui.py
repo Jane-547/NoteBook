@@ -14,10 +14,12 @@ def start():
         elif choice == '3':
             ctrl.show_by_date()
         elif choice == '4':
-            ctrl.delete_note()
+            ctrl.show_by_id()
         elif choice == '5':
-            ctrl.show_all()
+            ctrl.delete_note()
         elif choice == '6':
+            ctrl.show_all()
+        elif choice == '7':
             ctrl.view.goodbye()
             break
         else:
