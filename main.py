@@ -1,4 +1,4 @@
-import controller
+from NoteBook import console_ui
 
 if __name__=='__main__':
-    controller.start()
+    console_ui.start()

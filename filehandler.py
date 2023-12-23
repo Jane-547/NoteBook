@@ -1,9 +1,18 @@
+import json
+import os
 
-def create(base):
-    try:
-        file = open(base, 'r')
-    except IOError:
-        print('Создана новая записная книжка -> ' + base)
-        file = open(base, 'w')
-    finally:
-        file.close()
+notes_file = "notes.json"
+
+
+def load_notes():
+    if os.path.exists(notes_file):
+        with open(notes_file, 'r') as file:
+            notes = json.load(file)
+        return notes
+    else:
+        return {}
+
+
+def save_notes(notes):
+    with open(notes_file, 'w') as file:
+        json.dump(notes, file, indent=4)
