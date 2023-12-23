@@ -1,11 +1,13 @@
-class Note:
+import json
+
+
+class Note(object):
 
     def __init__(self, note_id, title, body, timestamp):
         self._note_id = note_id
         self._title = title
         self._body = body
         self._timestamp = timestamp
-        self._notes = []
 
     @property
     def title(self):
@@ -40,16 +42,9 @@ class Note:
         self._timestamp = timestamp
 
     def __str__(self):
-        return f'\nId заметки: {self._note_id}\nЗаголовок: {self._title}\nТекст: {self._body}\n' \
-               f'Дата последнего изменения:{self._timestamp}\n'
+        return f'\nId заметки: {self.note_id}\nЗаголовок: {self.title}\nТекст: {self.body}\n' \
+               f'Дата последнего изменения:{self.timestamp}\n'
 
-    def __iter__(self):
-        self.index = 0
-        return self
-
-    def __next__(self):
-        if self.index >= len(self._notes):
-            raise StopIteration
-        value = self._notes[self.index]
-        self.index += 1
-        return value
+    def to_json(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)

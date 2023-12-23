@@ -3,9 +3,9 @@ from NoteBook.controller import Controller
 
 def start():
     ctrl = Controller()
+    ctrl.view.welcome()
 
     while True:
-        ctrl.view.welcome()
         choice = ctrl.view.interface()
         if choice == '1':
             ctrl.add_note()
